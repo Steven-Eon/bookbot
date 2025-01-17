@@ -2,9 +2,18 @@ def main():
     filePath = "./books/frankenstein.txt"
     try:
         data = openFile(filePath)
+        wordCount = getWordCount(data)
+        charCount = getCharCount(data)
+
+        print(f"--- Beginning report of {filePath}. ---")
+        print(f"There is approximately {wordCount} words in this file. \n")
+        for i in charCount.keys():
+            if (not i.isalpha()):
+                continue
+            print(f"There is approximately {charCount[i]} instances of the character '{i}'.")
+        print(f"--- End of report for {filePath}. --- \n")
     except Exception as e:
         print(e)
-
 
 def getWordCount(data):
     if (type(data) != str):
@@ -28,3 +37,4 @@ def openFile(filePath):
     with open(filePath) as f:
         return f.read()
 
+main()
